@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rental_cars/controller/car_controller.dart';
@@ -11,8 +12,12 @@ class CarListView extends StatelessWidget {
     final carController = Get.find<CarController>();
 
     return Obx(() {
-      if (carController.filteredCars.isEmpty) {
-        return const Center(child: CircularProgressIndicator());
+      if (carController.isLoading.value) {
+        return const Center(child: CupertinoActivityIndicator());
+      } else if(carController.filteredCars.isEmpty){
+        return const  Center(child: Text('No cars have added',style: TextStyle(
+          color: Colors.grey
+        ),),);
       }
 
       return ListView.builder(

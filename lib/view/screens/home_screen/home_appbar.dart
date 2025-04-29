@@ -11,7 +11,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.transparent,
       elevation: 0,
       title: const Text(
-        '🚗 Rentals',
+        'Rentals',
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       centerTitle: true,

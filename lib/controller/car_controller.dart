@@ -18,6 +18,7 @@ class CarController extends GetxController {
   RxList<String> uploadedImageUrls = <String>[].obs;
   
   RxBool isUploading = false.obs;
+  RxBool isLoading = false.obs;
 
   final cloudName = 'dmihepkfq';       
   final uploadPreset = 'carImages';  
@@ -54,9 +55,16 @@ class CarController extends GetxController {
 
 
   Future<void> fetchCars() async {
-    final snapshot = await _firestore.collection('cars').get();
-    cars.value = snapshot.docs.map((doc) => CarModel.fromJson(doc.data())).toList();
-    filteredCars.assignAll(cars);
+    try {
+      isLoading.value = true;
+      final snapshot = await _firestore.collection('cars').get();
+      cars.value = snapshot.docs.map((doc) => CarModel.fromJson(doc.data())).toList();
+      filteredCars.assignAll(cars);
+    } catch (e) {
+      log('Error fetching cars: $e');
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   void searchCars(String query) {

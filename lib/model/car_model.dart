@@ -12,7 +12,11 @@ class CarModel {
   final String wheelType;
   final String fuelType;
   final String year;
-
+  
+  final String? carImage1;
+  final String? carImage2;
+  final String? carImage3;
+  final String? carImage4;
 
   CarModel({
     required this.id,
@@ -28,6 +32,10 @@ class CarModel {
     required this.wheelType,
     required this.fuelType,
     required this.year,
+    this.carImage1,
+    this.carImage2,
+    this.carImage3,
+    this.carImage4,
   });
 
   Map<String, dynamic> toJson() => {
@@ -38,12 +46,16 @@ class CarModel {
     'fuel': fuel,
     'mph': mph,
     'maxSpeed': maxSpeed,
-    'price':price,
+    'price': price,
     'color': color,
     'model': model,
     'wheelType': wheelType,
     'fuelType': fuelType,
     'year': year,
+    'carImage1': carImage1,
+    'carImage2': carImage2,
+    'carImage3': carImage3,
+    'carImage4': carImage4,
   };
 
   factory CarModel.fromJson(Map<String, dynamic> json) => CarModel(
@@ -60,5 +72,9 @@ class CarModel {
     wheelType: json['wheelType'],
     fuelType: json['fuelType'],
     year: json['year'],
+    carImage1: json['carImage1'],
+    carImage2: json['carImage2'],
+    carImage3: json['carImage3'],
+    carImage4: json['carImage4'],
   );
 }
